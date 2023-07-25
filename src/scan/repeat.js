@@ -24,7 +24,6 @@ function getRepeatCode(absoluteDir, ignore=[]){
       cwd:absoluteDir
     }));
   }, []).map(item=>`${pathObj.resolve(absoluteDir, item)}`).join(',');
-  console.log('ignorePath',ignorePath)
   return jscpd([
     '','',
     absoluteDir,
