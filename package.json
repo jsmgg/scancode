@@ -1,5 +1,5 @@
 {
-  "name": "scancode",
+  "name": "scan-code",
   "version": "0.0.1-beta.1",
   "description": "vue项目代码圈复杂度、认知复杂度、模板复杂度、重复率、ts覆盖率扫描",
   "main": "src/index.js",
