@@ -7,12 +7,12 @@
 1. 安装依赖
 
 ```
-npm install scancode -D
+npm install fe-scan -D
 ```
 2. 运行扫描任务
 
 ```javascript
-const scanCode = require('scancode');
+const scanCode = require('fe-scan');
 scanCode({
 	root:`${__dirname}/src`,
 	ignore: ['build/**'],
