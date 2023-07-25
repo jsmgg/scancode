@@ -1,4 +1,5 @@
 const fs = require("fs");
+const glob = require('glob');
 const pathObj = require("path");
 const {jscpd} = require('jscpd');
 const {exec} = require('../util/index');
@@ -18,15 +19,21 @@ function getRepeatCode(absoluteDir, ignore=[]){
   const outputPath = pathObj.resolve(absoluteDir, `../${Date.now()}${Math.random()*9999999|0}`)
   fs.mkdirSync(outputPath);
   const resultPath = `${outputPath}/jscpd-report.json`;
+  const ignorePath = ignore.reduce((res, regx)=>{
+    return res.concat(glob.sync(regx,{
+      cwd:absoluteDir
+    }));
+  }, []).map(item=>`${pathObj.resolve(absoluteDir, item)}`).join(',');
+  console.log('ignorePath',ignorePath)
   return jscpd([
     '','',
     absoluteDir,
     '-o',outputPath,
     '-p',`**/*.{js,ts,tsx,vue,scss,css}`,
     '-m','weak',
-    '-i',ignore.map(item=>`${absoluteDir}/${item}`).join(',')||'',
+    '-i',ignorePath,
     '-r','json',//console
-    '-l',10, //最小行数 默认 5  sca 设定 10 行;小于该值的文件将被忽略
+    '-l',10, //最小行数,小于该值的文件将被忽略
     '-x',5000,//最大行数
     '-z','1000kb',//最大文件体积
     '--store','leveldb',
@@ -67,7 +74,7 @@ function getRepeatCode(absoluteDir, ignore=[]){
     console.log('重复代码扫描结束!!!')
     return res;
   }).catch(err=>{
-    console.log(`代码重复度扫描Error:${err.message}`)
+    console.log(`****代码重复度扫描Error:${err.message}`)
     return null;
   }).finally(()=>{
     exec(`rm -rf ${outputPath}`).catch(err=>{

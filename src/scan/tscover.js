@@ -21,7 +21,7 @@ function getTsCover(absoluteDir, ignore = []){
     }
   })
   .catch(e => {
-    console.log(`ts覆盖率统计失败:Error:${e.message}`);
+    console.log(`****ts覆盖率统计失败:Error:${e.message}`);
     return ''
   });
 }

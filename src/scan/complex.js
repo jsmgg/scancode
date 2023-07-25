@@ -102,13 +102,13 @@ async function getComplex(absoluteDir, ignore=[]){
         }
       },
       fix: false,
-      rulePaths:[`${process.cwd()}/src/rules`]
+      rulePaths:[`src/rules`]
     });
     const report = await cli.lintFiles(absoluteDir);
     console.log(`代码复杂度扫描完成`)
     return formatData(report, absoluteDir);
   }catch(e){
-    console.log(`代码复杂度扫描:Error:${e.message||'执行失败'}`)
+    console.log(`****代码复杂度扫描:Error:${e.message||'执行失败'}`)
     return [];
   }
 }
