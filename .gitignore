@@ -1,0 +1,9 @@
+node_modules
+build
+.DS_Store
+tmp
+tmp2
+result/*
+dist
+build
+test/*
