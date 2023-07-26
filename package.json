@@ -1,6 +1,6 @@
 {
   "name": "fe-scan",
-  "version": "0.0.1-beta.3",
+  "version": "0.0.1-beta.5",
   "description": "vue项目代码圈复杂度、认知复杂度、模板复杂度、重复率、ts覆盖率扫描",
   "main": "src/index.js",
   "author": "jsmgg",
@@ -27,5 +27,5 @@
     "重复代码扫描",
     "ts覆盖率"
   ],
-  "repository": ""
+  "repository": "git@github.com:jsmgg/scancode.git"
 }

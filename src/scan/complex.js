@@ -1,4 +1,5 @@
 const {ESLint} = require('eslint');
+const pathObj = require("path");
 const complexityThreshold = 20;//函数圈复杂度阈值
 const MESSAGE_PREFIX = 'Maximum allowed is 0.';
 const MESSAGE_SUFFIX = 'has a complexity of ';
@@ -102,7 +103,7 @@ async function getComplex(absoluteDir, ignore=[]){
         }
       },
       fix: false,
-      rulePaths:[`src/rules`]
+      rulePaths:[pathObj.join(__filename,`../../rules`)]
     });
     const report = await cli.lintFiles(absoluteDir);
     console.log(`代码复杂度扫描完成`)
