@@ -8,11 +8,11 @@ async function main(){
   try{
     console.log(`${'**'.repeat(30)}开始测试${'**'.repeat(30)}`)
     const ignore = ['ignore.js','node_modules/**'];
-    const repeatData = await getRepeatCode(path.resolve(__dirname,`./test`), ignore);
+    const repeatData = await getRepeatCode(`./test`, ignore);
     console.log(`重复代码`,JSON.stringify(repeatData, null, '  '))
-    const tsCoverData = await getTsCover(path.resolve(__dirname,`./test`), ignore);
+    const tsCoverData = await getTsCover(`./test`, ignore);
     //console.log(`ts覆盖率`,tsCoverData)
-    const complex = await getComplex(path.resolve(__dirname,`./test`), ignore);
+    const complex = await getComplex(`./test`, ignore);
     //console.log('complex',JSON.stringify(complex,null,'  '))
 
     
