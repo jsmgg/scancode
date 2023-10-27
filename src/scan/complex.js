@@ -47,7 +47,7 @@ function formatData(report, absoluteDir){
       }
     });
     return {
-      filePath: filePath.replace(absoluteDir,''),
+      filePath: filePath.replace(`${absoluteDir}/`,''),
       cognitiveComplexity,
       cyclomaticComplexity,
       templateComplexity,
