@@ -9,13 +9,14 @@ async function main({
   ignore = [''],
   repeat = true,
   tscover = true,
-  complex = true
+  complex = true,
+  absolutePath = false
 } = {}){
   try{
     console.log(`${'**'.repeat(30)}开始扫描${'**'.repeat(30)}`);
     ignore = [...DefaultIgnore,...ignore]
     const repeatData = repeat ? await getRepeatCode(root, ignore) : null;
-    const tscoverData = tscover ? await getTsCover(root, ignore) : null;
+    const tscoverData = tscover ? await getTsCover(root, ignore, absolutePath) : null;
     const complexData = complex ? await getComplex(root, ignore) : null;
     console.log(`${'**'.repeat(30)}扫描完成!!!${'**'.repeat(30)}`)
     return {

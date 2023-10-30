@@ -18,7 +18,8 @@ scanCode({
 	ignore: ['build/**'],
 	repeat: true,
 	tscover: true,
-	complex: true
+	complex: true,
+	absolutePath: false
 }).then(res=>{
 	console.log(res);//代码扫描结果
 })
@@ -35,6 +36,10 @@ scanCode({
 是否扫描ts覆盖率，默认为：true 开启状态
 5. complex  
 是否开启代码复杂度扫描，默认为：true 开启状态
+6. absolutePath  
+是否是绝对路径，默认为：false 相对路径
+
+
 ### 扫描结果说明
 结果示例
 
