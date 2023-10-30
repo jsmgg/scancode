@@ -24,6 +24,7 @@ function getRepeatCode(absoluteDir, ignore=[]){
       cwd:absoluteDir
     }));
   }, []).map(item=>`${pathObj.resolve(absoluteDir, item)}`).join(',');
+  process.env.JSCPD_CACHE_DIR = absoluteDir;// 为了解决文件权限问题，这里暂时使用扫描目录为leveldb缓存目录
   return jscpd([
     '','',
     absoluteDir,
