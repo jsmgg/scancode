@@ -10,7 +10,7 @@ async function main(){
     const ignore = ['ignore.js','node_modules/**', ''];
     //const repeatData = await getRepeatCode(`./test`, ignore);
     //console.log(`重复代码`,JSON.stringify(repeatData, null, '  '))
-    const tsCoverData = await getTsCover(`/Users/huzhiming/Documents/testobj/treasure-static`, ignore, true);
+    const tsCoverData = await getTsCover(`./test`, ignore, true);
     console.log(`ts覆盖率`,tsCoverData)
     //const complex = await getComplex(`./test`, ignore);
     //console.log('complex',JSON.stringify(complex,null,'  '))
