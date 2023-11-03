@@ -19,11 +19,11 @@ function getRepeatCode(absoluteDir, ignore=[]){
   const outputPath = pathObj.resolve(absoluteDir, `../${Date.now()}${Math.random()*9999999|0}`)
   fs.mkdirSync(outputPath);
   const resultPath = `${outputPath}/jscpd-report.json`;
-  const ignorePath = ignore.reduce((res, regx)=>{
-    return res.concat(glob.sync(regx,{
-      cwd:absoluteDir
-    }));
-  }, []).map(item=>`${pathObj.resolve(absoluteDir, item)}`).join(',');
+  // const ignorePath = ignore.reduce((res, regx)=>{
+  //   return res.concat(glob.sync(regx,{
+  //     cwd:absoluteDir
+  //   }));
+  // }, []).map(item=>`${pathObj.resolve(absoluteDir, item)}`).join(',');
   process.env.JSCPD_CACHE_DIR = absoluteDir;// 为了解决文件权限问题，这里暂时使用扫描目录为leveldb缓存目录
   return jscpd([
     '','',
@@ -31,7 +31,7 @@ function getRepeatCode(absoluteDir, ignore=[]){
     '-o',outputPath,
     '-p',`**/*.{js,ts,tsx,vue,scss,css}`,
     '-m','weak',
-    '-i',ignorePath,
+    '-i',ignore.join(','),
     '-r','json',//console
     '-l',10, //最小行数,小于该值的文件将被忽略
     '-x',5000,//最大行数
