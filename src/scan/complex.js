@@ -29,7 +29,7 @@ function formatData(report, absoluteDir){
         cognitiveComplexity += _cognitiveComplexity;
         return;
       }
-      if (message.ruleId === '@nibfe/gc/vue-template-complex') {
+      if (message.ruleId === 'vue-template-complex') {
         templateComplexity++;
         return;
       }
