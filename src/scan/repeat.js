@@ -1,5 +1,4 @@
 const fs = require("fs");
-const glob = require('glob');
 const pathObj = require("path");
 const {jscpd} = require('jscpd');
 const {exec} = require('../util/index');
@@ -16,15 +15,23 @@ const {exec} = require('../util/index');
  */
 function getRepeatCode(absoluteDir, ignore=[]){
   console.log(`开始重复代码扫描...`)
-  const outputPath = pathObj.resolve(absoluteDir, `../${Date.now()}${Math.random()*9999999|0}`)
-  fs.mkdirSync(outputPath);
+  const outputPath = pathObj.resolve(absoluteDir, `./.scan_code_${Date.now()}${Math.random()*9999999|0}`)
+  try{
+    fs.mkdirSync(outputPath);
+  }catch(err){
+    console.log(`mkdir ${outputPath} Error: ${err.message}`);
+  }
   const resultPath = `${outputPath}/jscpd-report.json`;
-  // const ignorePath = ignore.reduce((res, regx)=>{
-  //   return res.concat(glob.sync(regx,{
-  //     cwd:absoluteDir
-  //   }));
-  // }, []).map(item=>`${pathObj.resolve(absoluteDir, item)}`).join(',');
-  process.env.JSCPD_CACHE_DIR = absoluteDir;// 为了解决文件权限问题，这里暂时使用扫描目录为leveldb缓存目录
+  ignore = ignore.map(item=>{
+    let arr=item.split('/');
+    if(arr[0] === '.' || arr[0] === '..' || arr[0] === ''){
+      arr[0] = '**';
+    }else{
+      arr.unshift('**')
+    }
+    return arr.join('/')
+  });
+  process.env.JSCPD_CACHE_DIR = outputPath;// 为了解决文件权限问题，这里暂时使用扫描结果目录为leveldb缓存目录
   return jscpd([
     '','',
     absoluteDir,

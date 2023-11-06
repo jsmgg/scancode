@@ -6,7 +6,7 @@ const DefaultIgnore = ['node_modules/**','build/**','dist/**']
 
 async function main({
   root=__dirname,
-  ignore = [''],
+  ignore = [],
   repeat = true,
   tscover = true,
   complex = true,
@@ -14,7 +14,7 @@ async function main({
 } = {}){
   try{
     console.log(`${'**'.repeat(30)}开始扫描${'**'.repeat(30)}`);
-    ignore = [...DefaultIgnore,...ignore]
+    ignore = [...DefaultIgnore,...ignore].filter(item=>item.trim().length);
     const repeatData = repeat ? await getRepeatCode(root, ignore) : null;
     const tscoverData = tscover ? await getTsCover(root, ignore, absolutePath) : null;
     const complexData = complex ? await getComplex(root, ignore) : null;
