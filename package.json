@@ -27,5 +27,8 @@
     "重复代码扫描",
     "ts覆盖率"
   ],
-  "repository": "git@github.com:jsmgg/scancode.git"
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jsmgg/scancode.git"
+  }
 }
