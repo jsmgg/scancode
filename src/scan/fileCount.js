@@ -11,7 +11,8 @@ function getFileCount(root, ignore){
     }
     return arr.join('/')
   });
-  let fileList = glob.sync(`${root}/**/*.{js,ts,tsx,jsx,vue,scss,css,less}`,{
+  let fileList = glob.sync(`**/*.{js,ts,tsx,jsx,vue,scss,css,less}`,{
+    cwd:root,
     ignore
   });
   return fileList.length;
