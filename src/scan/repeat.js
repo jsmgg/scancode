@@ -61,12 +61,12 @@ function getRepeatCode(absoluteDir, ignore=[]){
       return {
         lines: item.lines,
         firstFile: {
-          path: firstFile.name.replace(`../${absoluteDir.split('/').pop()}/`, '').replace(absoluteDir, ''),
+          path: firstFile.name.replace(`../${absoluteDir.split('/').pop()}/`, '').replace(`../../${absoluteDir.split('/').pop()}/`, '').replace(`/${absoluteDir}/`, ''),
           start:firstFile.start,
           end: firstFile.end
         },
         secondFile: {
-          path: secondFile.name.replace(`../${absoluteDir.split('/').pop()}/`, '').replace(absoluteDir, ''),
+          path: secondFile.name.replace(`../${absoluteDir.split('/').pop()}/`, '').replace(`../../${absoluteDir.split('/').pop()}/`, '').replace(`/${absoluteDir}/`, ''),
           start:secondFile.start,
           end: secondFile.end
         }
