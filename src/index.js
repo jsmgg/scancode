@@ -1,6 +1,8 @@
 const getRepeatCode = require('./scan/repeat');
 const getTsCover = require('./scan/tscover');
 const getComplex = require('./scan/complex');
+const getFileCount = require('./scan/fileCount');
+
 
 const DefaultIgnore = ['node_modules/**','build/**','dist/**']
 
@@ -18,20 +20,18 @@ async function main({
     const repeatData = repeat ? await getRepeatCode(root, ignore) : null;
     const tscoverData = tscover ? await getTsCover(root, ignore, absolutePath) : null;
     const complexData = complex ? await getComplex(root, ignore) : null;
+    const fileCount = getFileCount(root, ignore);
     console.log(`${'**'.repeat(30)}扫描完成!!!${'**'.repeat(30)}`)
     return {
       repeat: repeatData,
       tscover: tscoverData,
-      complex: complexData
+      complex: complexData,
+      fileCount
     }
   }catch(err){
-    console.log(`${'**'.repeat(30)}测试未通过:${err.message}${'**'.repeat(30)}`);
+    console.log(`${'**'.repeat(30)}fe-scan扫描未通过:${err.message}${'**'.repeat(30)}`);
   }
 }
-
-// main().then(res=>{
-//   console.log(JSON.stringify(res, null, ' '))
-// });
 module.exports = main;
 
 
