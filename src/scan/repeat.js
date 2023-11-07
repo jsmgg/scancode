@@ -53,6 +53,7 @@ function getRepeatCode(absoluteDir, ignore=[]){
       duplicatedLines,//重复行数
       percentage//重复百分比
     } = result.statistics.total;
+    absoluteDir = absoluteDir[0] === '/'? absoluteDir.substr(1, absoluteDir.length):absoluteDir;
     const data= (result.duplicates||[]).map(item=>{
       const {
         firstFile = {},
