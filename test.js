@@ -4,6 +4,7 @@ const getRepeatCode = require('./src/scan/repeat');
 const getTsCover = require('./src/scan/tscover');
 const getComplex = require('./src/scan/complex');
 const getFileCount = require('./src/scan/fileCount');
+const getSonarMsg = require('./src/scan/sonar');
 
 
 
@@ -19,7 +20,9 @@ async function main(){
     // const complex = await getComplex(root, ignore);
     // console.log('complex',JSON.stringify(complex,null,'  '))
 
-    console.log(`fileList:size: ${getFileCount(root, ignore)}; 实际文件数：8`)
+    //console.log(`fileList:size: ${getFileCount(root, ignore)}; 实际文件数：8`)
+    const sonarMsg = await getSonarMsg(root, ignore);
+    console.log(JSON.stringify(sonarMsg, null, ' '))
     
     console.log(`${'**'.repeat(30)}测试通过!!!${'**'.repeat(30)}`)
   }catch(err){
